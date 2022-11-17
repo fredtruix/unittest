@@ -4,36 +4,47 @@ from employee import Employee
 
 class TestEmpoyee(unittest.TestCase):
 
+    def setUp(self):
+        self.emp_1 = Employee("fredrick","trust",50000)
+        self.emp_2 = Employee("john","doe",10000)
+
+    def tearDown(self):
+        pass
+
     def test_email(self):
-        emp_1 = Employee("fredrick","trust","50000")
-        emp_2 = Employee("john","doe","100000")
+    
+        self.assertEqual(self.emp_1.email, "fredricktrust@gmail.com")
+        self.assertEqual(self.emp_2.email, "johndoe@gmail.com")
+
+        self.emp_1.first = "orume"
+        self.emp_2.first = "berry"
 
 
-        self.assertEqual(emp_1.email, "fredricktrust@gmail.com")
-        self.assertEqual(emp_2.email, "johndoe@gmail.com")
-
-        emp_1.first = "orume"
-        emp_2.first = "berry"
-
-
-        self.assertEqual(emp_1.email, "orumetrust@gmail.com")
-        self.assertEqual(emp_2.email, "berrydoe@gmail.com")
+        self.assertEqual(self.emp_1.email, "orumetrust@gmail.com")
+        self.assertEqual(self.emp_2.email, "berrydoe@gmail.com")
 
 
     def test_fullname(self):
-        emp_1 = Employee("fredrick","trust","50000")
-        emp_2 = Employee("john","doe","100000")
+      
 
-        self.assertEqual(emp_1.fullname, "fredrick trust")
-        self.assertEqual(emp_2.fullname, "john doe")
+        self.assertEqual(self.emp_1.fullname, "fredrick trust")
+        self.assertEqual(self.emp_2.fullname, "john doe")
 
 
-        emp_1.first = "orume"
-        emp_2.first = "berry"
+        self.emp_1.first = "orume"
+        self.emp_2.first = "berry"
 
-        self.assertEqual(emp_1.fullname, "orume trust")
-        self.assertEqual(emp_2.fullname, "berry doe")
+        self.assertEqual(self.emp_1.fullname, "orume trust")
+        self.assertEqual(self.emp_2.fullname, "berry doe")
 
+
+    def test_apply_raise(self):
+
+        self.emp_1.apply_raise()
+        self.emp_2.apply_raise()
+
+        self.assertEqual(self.emp_1.pay, 52500)
+        self.assertEqual(self.emp_2.pay, 10500)
 
 
 
