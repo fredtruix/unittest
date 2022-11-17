@@ -30,7 +30,7 @@ class TestCalc(unittest.TestCase):
 
         self.assertRaises(ValueError, calc.divide, 10, 0)
 
-        # using context manage
+        # using context manager for testing exception
         with self.assertRaises(ValueError):
             calc.divide(10,0)
 
